@@ -39,11 +39,44 @@ const countObserver = new IntersectionObserver((entries, currentObserver) => {
 
 document.querySelectorAll('[data-count]').forEach((element) => countObserver.observe(element));
 
-document.querySelector('.contact-form')?.addEventListener('submit', (event) => {
+const contactForm = document.querySelector('.contact-form');
+contactForm?.addEventListener('submit', (event) => {
   event.preventDefault();
-  const message = event.currentTarget.querySelector('.form-message');
+  const form = event.currentTarget;
+  const message = form.querySelector('.form-message');
+  const phoneFrame = form.querySelector('.phone-frame');
+
+  if (!form.checkValidity()) {
+    message.textContent = 'Please fill in the required details before sending.';
+    message.style.color = '#ffad4d';
+    form.reportValidity();
+    return;
+  }
+
+  phoneFrame?.classList.remove('sending');
+  void phoneFrame?.offsetWidth;
+  phoneFrame?.classList.add('sending');
+
   message.textContent = 'Signal received. We will be in touch shortly.';
-  event.currentTarget.reset();
+  message.style.color = '#55d8ff';
+
+  setTimeout(() => {
+    phoneFrame?.classList.remove('sending');
+  }, 900);
+
+  form.reset();
+});
+
+const escExplorer = document.getElementById('escExplorer');
+escExplorer?.addEventListener('click', () => {
+  escExplorer.classList.toggle('opened');
+});
+
+escExplorer?.addEventListener('keydown', (event) => {
+  if (event.key === 'Enter' || event.key === ' ') {
+    event.preventDefault();
+    escExplorer.classList.toggle('opened');
+  }
 });
 
 document.querySelector('#year').textContent = new Date().getFullYear();
