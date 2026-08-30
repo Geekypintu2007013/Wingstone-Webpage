@@ -1,0 +1,1109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>PRALAY V1 — Upcoming Product</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&family=JetBrains+Mono:wght@400;500;600&family=Inter:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg: #101a2b;
+    --bg-alt: #0e1721;
+    --panel: #172937;
+    --line: rgba(85,216,255,0.18);
+    --line-strong: rgba(85,216,255,0.35);
+    --cyan: #55d8ff;
+    --cyan-dim: rgba(85,216,255,0.55);
+    --amber: #ffad4d;
+    --ink: #101a2b;
+    --paper: #f4f1e8;
+    --text: #eef5f7;
+    --text-dim: #a5bac1;
+    --text-faint: #7b8d96;
+    --mono: 'JetBrains Mono', monospace;
+    --display: 'Space Grotesk', sans-serif;
+    --body: 'Inter', sans-serif;
+  }
+  *{ margin:0; padding:0; box-sizing:border-box; }
+  html{ scroll-behavior:smooth; }
+  body{
+    background:var(--bg);
+    color:var(--text);
+    font-family:var(--body);
+    overflow-x:hidden;
+    background-image:
+      linear-gradient(var(--line) 1px, transparent 1px),
+      linear-gradient(90deg, var(--line) 1px, transparent 1px);
+    background-size: 48px 48px;
+    background-position: -1px -1px;
+  }
+  ::selection{ background:var(--cyan); color:#051018; }
+
+  a{ color:inherit; text-decoration:none; }
+
+  .mono{ font-family:var(--mono); }
+
+  /* ---------- NAV ---------- */
+  header{
+    position:fixed; top:0; left:0; right:0; z-index:50;
+    display:flex; align-items:center; justify-content:space-between;
+    padding: 22px 40px;
+    background:linear-gradient(to bottom, rgba(16,26,43,0.92), rgba(16,26,43,0));
+    backdrop-filter: blur(2px);
+  }
+  .brand{
+    display:flex; align-items:center; gap:10px;
+    font-family:var(--display); font-weight:700; font-size:18px;
+    letter-spacing:0.02em;
+  }
+  .brand .dot{
+    width:9px; height:9px; border-radius:50%;
+    background:var(--cyan);
+    box-shadow:0 0 10px var(--cyan), 0 0 2px var(--cyan);
+    animation: pulse-dot 2.4s ease-in-out infinite;
+  }
+  @keyframes pulse-dot{ 0%,100%{opacity:1;} 50%{opacity:.35;} }
+  .brand .sub{
+    font-family:var(--mono); font-weight:400; font-size:10.5px;
+    color:var(--text-dim); letter-spacing:0.14em; margin-left:2px;
+  }
+  nav ul{ list-style:none; display:flex; gap:34px; }
+  nav a{
+    font-family:var(--mono); font-size:11.5px; letter-spacing:0.1em;
+    color:var(--text-dim); text-transform:uppercase;
+    position:relative; padding-bottom:3px; transition:color .25s ease;
+  }
+  nav a::after{
+    content:''; position:absolute; left:0; bottom:0; width:0; height:1px;
+    background:var(--cyan); transition:width .25s ease;
+  }
+  nav a:hover{ color:var(--text); }
+  nav a:hover::after{ width:100%; }
+  .status-chip{
+    display:flex; align-items:center; gap:8px;
+    font-family:var(--mono); font-size:10.5px; color:var(--cyan);
+    border:1px solid var(--line-strong); padding:6px 12px; border-radius:100px;
+    letter-spacing:0.08em;
+  }
+
+  /* ---------- HERO ---------- */
+  .hero{
+    position:relative;
+    min-height:100vh;
+    display:flex; flex-direction:column;
+    justify-content:center;
+    padding: 140px 40px 60px;
+    overflow:hidden;
+  }
+  .hero-frame{
+    position:absolute; inset:18px;
+    border:1px solid var(--line-strong);
+    pointer-events:none;
+  }
+  .corner{
+    position:absolute; width:22px; height:22px;
+    border:1.5px solid var(--cyan);
+    opacity:0.85;
+  }
+  .corner.tl{ top:-1px; left:-1px; border-right:none; border-bottom:none; }
+  .corner.tr{ top:-1px; right:-1px; border-left:none; border-bottom:none; }
+  .corner.bl{ bottom:-1px; left:-1px; border-right:none; border-top:none; }
+  .corner.br{ bottom:-1px; right:-1px; border-left:none; border-top:none; }
+
+  .hero-top{
+    display:flex; justify-content:space-between; align-items:flex-start;
+    max-width:1400px; width:100%; margin:0 auto 20px;
+    font-family:var(--mono); font-size:11px; color:var(--text-dim);
+    letter-spacing:0.08em;
+  }
+  .hero-top .col{ display:flex; flex-direction:column; gap:4px; }
+  .hero-top .col span.k{ color:var(--text-faint); }
+  .hero-top .col span.v{ color:var(--cyan); }
+  .hero-top .col.right{ text-align:right; }
+
+  .hero-main{
+    position:relative;
+    max-width:1400px; width:100%; margin:0 auto;
+    display:grid;
+    grid-template-columns: 1fr;
+    align-items:center;
+    text-align:center;
+    perspective:1200px;
+    transform-style:preserve-3d;
+  }
+  .eyebrow{
+    font-family:var(--mono); font-size:12px; color:var(--amber);
+    letter-spacing:0.25em; text-transform:uppercase; margin-bottom:18px;
+  }
+  h1.title{
+    font-family:var(--display); font-weight:700;
+    font-size: clamp(46px, 7vw, 108px);
+    line-height:0.98; letter-spacing:-0.01em;
+    color:var(--text);
+  }
+  h1.title .accent{ color:var(--cyan); }
+  .hero-sub{
+    max-width:640px; margin:26px auto 0;
+    font-size:16px; line-height:1.6; color:var(--text-dim);
+  }
+
+  .hero-actions{
+    display:flex; align-items:center; justify-content:center; gap:18px;
+    flex-wrap:wrap; margin-top:30px;
+  }
+
+  .explore-btn,
+  .ghost-btn{
+    display:inline-flex; align-items:center; justify-content:center; gap:12px;
+    min-height:52px; padding:0 24px; border-radius:999px; font-family:var(--mono);
+    letter-spacing:0.08em; text-transform:uppercase; transition:transform .25s ease, box-shadow .25s ease, border-color .25s ease;
+    text-decoration:none;
+  }
+
+  .explore-btn{
+    background:linear-gradient(135deg, var(--cyan), #7ed8ff 42%, #d6f4ff 100%);
+    color:#06141a; box-shadow:0 18px 36px rgba(85,216,255,0.25); font-weight:700;
+  }
+
+  .explore-btn em,
+  .ghost-btn em{
+    font-style:normal; font-size:18px; line-height:1;
+  }
+
+  .ghost-btn{
+    background:rgba(255,255,255,0.02); color:var(--text); border:1px solid var(--line-strong);
+    backdrop-filter: blur(8px);
+  }
+
+  .explore-btn:hover,
+  .ghost-btn:hover{
+    transform:translateY(-2px); box-shadow:0 22px 42px rgba(85,216,255,0.18);
+  }
+
+  .diagram-wrap{
+    position:relative;
+    width:100%;
+    max-width:1000px;
+    margin: 50px auto 0;
+    aspect-ratio: 900 / 620;
+    border:1px solid rgba(85,216,255,0.18);
+    background:radial-gradient(circle at center, rgba(85,216,255,0.08), rgba(16,26,43,0.12) 34%, rgba(16,26,43,0.6) 100%);
+    box-shadow: inset 0 0 40px rgba(85,216,255,0.08), 0 35px 80px rgba(0,0,0,0.28);
+    transform: rotateX(10deg) rotateY(-10deg);
+    transform-style: preserve-3d;
+    animation: hover-surface 10s ease-in-out infinite alternate;
+    overflow:hidden;
+    cursor:pointer;
+  }
+
+  .diagram-wrap.opened .hint { opacity:0; }
+  .diagram-wrap.opened .shell.left { transform: translate(-120px,-52px) rotate(-30deg) scale(1.02); opacity:.08; filter: blur(1px); }
+  .diagram-wrap.opened .shell.right { transform: translate(120px,-52px) rotate(30deg) scale(1.02); opacity:.08; filter: blur(1px); }
+  .diagram-wrap.opened .reveal-layer { opacity:1; transform:scale(1.03) translateY(-10px); }
+  .diagram-wrap.opened .radar-scene { filter:saturate(1.18) brightness(1.12); }
+
+  .touch-hud{
+    position:absolute; top:18px; left:0; right:0; z-index:6;
+    display:flex; justify-content:space-between; align-items:center;
+    padding:0 26px; font-size:11px; letter-spacing:.08em; color:var(--text-dim);
+    font-family:var(--mono); pointer-events:none;
+  }
+  .touch-hud b{ color:var(--cyan); font-weight:500; }
+
+  .radar-scene {
+    position:absolute; inset:0; z-index:0; pointer-events:none; transition: filter .75s ease;
+  }
+  .radar-core {
+    position:absolute; left:50%; top:50%; width:180px; height:180px;
+    transform:translate(-50%,-50%); border-radius:50%;
+    background:radial-gradient(circle, rgba(118,255,180,0.16) 0%, rgba(12,29,23,0.97) 32%, rgba(8,15,13,0.98) 100%);
+    border:1px solid rgba(143,255,188,0.32);
+    box-shadow:inset 0 0 28px rgba(90,255,160,0.12), 0 0 26px rgba(90,255,160,0.08);
+  }
+  .radar-pulse { position:absolute; left:50%; top:50%; width:120px; height:120px; border:1px solid rgba(126,255,190,0.42); border-radius:50%; transform:translate(-50%,-50%); opacity:0; animation:radarPulse 3.4s ease-out infinite; }
+  .pulse-one { animation-delay:0s; }
+  .pulse-two { width:180px; height:180px; animation-delay:1.4s; }
+  .radar-crosshair { position:absolute; left:50%; top:50%; width:220px; height:220px; transform:translate(-50%,-50%); border-radius:50%; border:1px solid rgba(126,255,190,0.18); }
+  .radar-crosshair::before, .radar-crosshair::after { content:''; position:absolute; left:50%; top:50%; transform:translate(-50%,-50%); background:rgba(126,255,190,0.42); }
+  .radar-crosshair::before { width:1px; height:100%; }
+  .radar-crosshair::after { width:100%; height:1px; }
+  .radar-ring { position:absolute; border:1px solid rgba(141,255,190,0.38); border-radius:50%; left:50%; top:50%; transform:translate(-50%,-50%); opacity:.75; }
+  .ring-one { width:420px; height:420px; }
+  .ring-two { width:290px; height:290px; }
+  .ring-three { width:180px; height:180px; }
+  .radar-badges { position:absolute; inset:0; }
+  .contact { position:absolute; display:block; width:8px; height:8px; border-radius:50%; background:radial-gradient(circle, rgba(255,255,255,1) 0%, rgba(255,90,90,.95) 35%, rgba(255,35,35,.7) 100%); box-shadow:0 0 8px rgba(255,55,55,.8), 0 0 0 4px rgba(255,55,55,.12); animation:contactBlink 2.5s ease-in-out infinite; }
+  .contact-a { left:28%; top:30%; }
+  .contact-b { left:62%; top:58%; animation-delay:.7s; }
+  .contact-c { left:76%; top:24%; animation-delay:1.4s; }
+  .radar-target { position:absolute; left:68%; top:36%; width:30px; height:30px; transform:translate(-50%,-50%); animation:targetDrift 7s ease-in-out infinite alternate; }
+  .target-blip { position:absolute; left:50%; top:50%; width:12px; height:12px; transform:translate(-50%,-50%); border-radius:50%; background:radial-gradient(circle, rgba(255,255,255,.98) 0%, rgba(255,120,120,.95) 30%, rgba(255,30,30,.8) 65%, rgba(18,10,10,.9) 100%); box-shadow:0 0 0 6px rgba(255,80,80,.12), 0 0 18px rgba(255,80,80,.8); }
+  .target-ring { position:absolute; left:50%; top:50%; width:30px; height:30px; transform:translate(-50%,-50%); border:1px solid rgba(255,128,128,.8); border-radius:50%; box-shadow:0 0 14px rgba(255,80,80,.4); }
+  .target-box { position:absolute; left:50%; top:50%; width:60px; height:60px; transform:translate(-50%,-50%); border:1px solid rgba(255,120,120,.8); box-shadow:0 0 0 1px rgba(255,120,120,.14), 0 0 16px rgba(255,80,80,.25); animation:boxPulse 2.2s ease-in-out infinite; }
+  .radar-target::before { content:''; position:absolute; left:50%; top:50%; width:82px; height:1px; transform:translate(-16px,-50%) rotate(-18deg); background:linear-gradient(90deg, rgba(255,120,120,0), rgba(255,120,120,.9), rgba(255,120,120,0)); box-shadow:0 0 12px rgba(255,120,120,.65); }
+  .radar-sweep { position:absolute; left:50%; top:50%; width:48%; height:2px; background:linear-gradient(90deg, rgba(120,255,182,0), rgba(120,255,182,.95), rgba(120,255,182,0)); transform-origin:left center; animation:sweep 5s linear infinite; box-shadow:0 0 22px rgba(120,255,182,.7); }
+  .radar-label { position:absolute; right:26px; bottom:26px; color:rgba(166,255,210,.9); font:10px var(--mono); letter-spacing:.12em; text-transform:uppercase; }
+
+  .radar-ring{
+    position:absolute; left:50%; top:50%;
+    border:1px solid var(--line-strong);
+    border-radius:50%;
+    transform:translate(-50%,-50%);
+    opacity:0.5;
+  }
+  .diagram-svg{ position:absolute; inset:0; width:100%; height:100%; }
+  .scanline{
+    position:absolute; left:6%; right:6%; height:1px;
+    background:linear-gradient(90deg, transparent, var(--cyan), transparent);
+    opacity:0.75;
+    animation: sweep 5s ease-in-out infinite;
+    filter: drop-shadow(0 0 6px var(--cyan));
+  }
+
+  .shell{ transition: transform .7s cubic-bezier(.2,.85,.25,1), opacity .7s ease; transform-origin:center; }
+  .shell.left{ transform: translate(0,0) rotate(0deg); }
+  .shell.right{ transform: translate(0,0) rotate(0deg); }
+
+  .reveal-layer{ opacity:0; transform:scale(.9) translateY(12px); transform-origin:450px 320px; transition: opacity .5s ease .18s, transform .7s cubic-bezier(.18,.8,.22,1) .18s; }
+  .trace{
+    fill:none; stroke-linecap:round;
+    transition: stroke-dashoffset .9s cubic-bezier(.3,.7,.2,1);
+  }
+  .trace:nth-of-type(1){ transition-delay:.05s; }
+  .trace:nth-of-type(2){ transition-delay:.1s; }
+  .trace:nth-of-type(3){ transition-delay:.15s; }
+  .trace:nth-of-type(4){ transition-delay:.2s; }
+  .trace:nth-of-type(5){ transition-delay:.3s; }
+  .trace:nth-of-type(6){ transition-delay:.35s; }
+  .trace:nth-of-type(7){ transition-delay:.4s; }
+  .trace:nth-of-type(8){ transition-delay:.45s; }
+  .trace:nth-of-type(9){ transition-delay:.55s; }
+  .trace:nth-of-type(10){ transition-delay:.6s; }
+  .diagram-wrap.opened .trace{ stroke-dashoffset:0; }
+  .diagram-wrap.opened .trace:nth-of-type(1), .diagram-wrap.opened .trace:nth-of-type(3), .diagram-wrap.opened .trace:nth-of-type(5), .diagram-wrap.opened .trace:nth-of-type(7) { filter: drop-shadow(0 0 8px rgba(255,93,108,.7)); }
+  .pin{ opacity:0; transition: opacity .4s ease; }
+  .diagram-wrap.opened .pin{ opacity:1; transition-delay: 1.1s; }
+
+  .hint{
+    position:absolute; left:50%; bottom:8%; transform:translateX(-50%);
+    display:flex; align-items:center; gap:10px;
+    font-size:11px; letter-spacing:.16em; color:var(--cyan);
+    opacity:1; transition:opacity .5s ease;
+    pointer-events:none;
+    z-index:2;
+  }
+  .hint .pulse-dot{
+    width:7px; height:7px; border-radius:50%; background:var(--cyan);
+    box-shadow:0 0 10px var(--cyan);
+    animation: blink 1.4s ease-in-out infinite;
+  }
+  @keyframes blink{ 0%,100%{opacity:1;} 50%{opacity:.25;} }
+
+  .close-btn{
+    position:absolute; top:18px; right:18px; z-index:10;
+    font-family:var(--mono); font-size:10.5px; letter-spacing:.12em; color:var(--text-dim);
+    border:1px solid var(--line-strong); padding:7px 14px; border-radius:100px;
+    opacity:0; pointer-events:none; transition:opacity .4s ease, transform .35s ease, box-shadow .35s ease;
+    background:rgba(10,13,16,0.65); box-shadow:none; cursor:pointer;
+  }
+  .diagram-wrap.opened ~ .close-btn{ opacity:1; pointer-events:auto; transform:translateY(-2px); box-shadow:0 0 18px rgba(85,216,255,0.18); }
+  .close-btn:hover{ color:var(--cyan); border-color:var(--cyan-dim); box-shadow:0 0 18px rgba(85,216,255,0.18); }
+
+  .caption{
+    position:absolute; bottom:18px; left:0; right:0; text-align:center;
+    font-family:var(--mono); font-size:11px; letter-spacing:.12em;
+    color:var(--text-faint); pointer-events:none;
+  }
+  @keyframes sweep{
+    0%{ top:8%; opacity:0; }
+    10%{ opacity:.8;}
+    50%{ top:92%; opacity:.8; }
+    60%{ opacity:0;}
+    100%{ top:92%; opacity:0; }
+  }
+
+  .marker{
+    position:absolute;
+    width:20px; height:20px;
+    transform:translate(-50%,-50%);
+    display:flex; align-items:center; justify-content:center;
+  }
+  .marker .ring{
+    position:absolute; inset:0; border-radius:50%;
+    border:1px solid var(--cyan-dim);
+    animation: ring-pulse 2.6s ease-out infinite;
+  }
+  .marker .core{
+    width:6px; height:6px; border-radius:50%;
+    background:var(--cyan); box-shadow:0 0 8px var(--cyan);
+  }
+  @keyframes ring-pulse{
+    0%{ transform:scale(0.5); opacity:0.9; }
+    100%{ transform:scale(2.4); opacity:0; }
+  }
+  .tag{
+    position:absolute;
+    font-family:var(--mono); font-size:10.5px; letter-spacing:0.06em;
+    color:var(--text-dim); white-space:nowrap;
+    display:flex; align-items:center; gap:7px;
+    opacity:0; animation:tag-in 0.6s ease forwards;
+  }
+  .tag .idx{
+    color:var(--bg); background:var(--cyan);
+    font-weight:600; font-size:9.5px;
+    width:16px; height:16px; border-radius:3px;
+    display:flex; align-items:center; justify-content:center;
+  }
+  .tag .label{ color:var(--text); }
+  .tag .label small{ display:block; color:var(--text-faint); font-size:9px; font-weight:400; }
+  @keyframes tag-in{ to{ opacity:1; } }
+
+  @keyframes hover-surface {
+    0% { transform: rotateX(9deg) rotateY(-9deg) translateY(0px); }
+    50% { transform: rotateX(12deg) rotateY(8deg) translateY(-10px); }
+    100% { transform: rotateX(7deg) rotateY(-6deg) translateY(6px); }
+  }
+
+  @keyframes glow-drift {
+    0%, 100% { box-shadow: 0 0 18px rgba(85,216,255,0.14), 0 0 30px rgba(85,216,255,0.08); }
+    50% { box-shadow: 0 0 26px rgba(85,216,255,0.24), 0 0 46px rgba(85,216,255,0.12); }
+  }
+
+  @keyframes radarPulse {
+    0% { opacity:0; transform:translate(-50%,-50%) scale(.6); }
+    20% { opacity:1; }
+    60% { opacity:.3; }
+    100% { opacity:0; transform:translate(-50%,-50%) scale(1.8); }
+  }
+  @keyframes targetDrift {
+    0% { transform:translate(-50%,-50%) translate(0,0) scale(1); }
+    25% { transform:translate(-50%,-50%) translate(-18px,-16px) scale(1.08); }
+    50% { transform:translate(-50%,-50%) translate(8px,-22px) scale(1); }
+    75% { transform:translate(-50%,-50%) translate(22px,10px) scale(1.08); }
+    100% { transform:translate(-50%,-50%) translate(-10px,18px) scale(1); }
+  }
+  @keyframes contactBlink {
+    0%,100% { opacity:.45; transform:scale(.9); }
+    50% { opacity:1; transform:scale(1.4); }
+  }
+  @keyframes boxPulse {
+    0%,100% { box-shadow:0 0 0 1px rgba(255,120,120,.14), 0 0 16px rgba(255,80,80,.25); }
+    50% { box-shadow:0 0 0 3px rgba(255,120,120,.12), 0 0 26px rgba(255,80,80,.5); }
+  }
+
+  .scroll-cue{
+    position:absolute; bottom:26px; left:50%; transform:translateX(-50%);
+    display:flex; flex-direction:column; align-items:center; gap:8px;
+    font-family:var(--mono); font-size:10px; color:var(--text-faint);
+    letter-spacing:0.18em;
+  }
+  .scroll-cue .line{
+    width:1px; height:34px;
+    background:linear-gradient(var(--cyan), transparent);
+    animation: cue-move 1.8s ease-in-out infinite;
+  }
+  @keyframes cue-move{ 0%{opacity:0.2;} 50%{opacity:1;} 100%{opacity:0.2;} }
+
+  @media (max-width: 980px) {
+    header{
+      padding: 18px 22px;
+      flex-wrap: wrap;
+      gap: 14px 20px;
+    }
+    nav ul{
+      gap: 16px 22px;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+    .hero{
+      padding: 120px 20px 52px;
+    }
+    .hero-top{
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 8px;
+    }
+    .hero-top .col.right{
+      text-align: left;
+    }
+    .hero-sub{ max-width: 560px; }
+    .diagram-wrap{
+      max-width: 760px;
+      aspect-ratio: 760 / 520;
+      margin-top: 36px;
+    }
+    .touch-hud{
+      padding: 0 14px;
+      font-size: 9px;
+      letter-spacing: 0.06em;
+    }
+    .radar-core{ width: 140px; height: 140px; }
+    .radar-crosshair{ width: 180px; height: 180px; }
+    .ring-one{ width: 300px; height: 300px; }
+    .ring-two{ width: 220px; height: 220px; }
+    .ring-three{ width: 150px; height: 150px; }
+    .tag{ font-size: 9px; }
+    .tag .idx{ width: 14px; height: 14px; }
+  }
+
+  @media (max-width: 760px) {
+    header{
+      padding: 16px 14px;
+    }
+    .brand{
+      font-size: 14px;
+    }
+    nav ul{
+      gap: 10px 14px;
+    }
+    nav a{
+      font-size: 9px;
+      letter-spacing: 0.08em;
+    }
+    .status-chip{
+      display: none;
+    }
+    .hero-main{
+      text-align: left;
+    }
+    .eyebrow{
+      letter-spacing: 0.18em;
+      margin-bottom: 14px;
+    }
+    .hero-sub{
+      margin-left: 0;
+      font-size: 15px;
+    }
+    .hero-actions{
+      justify-content: flex-start;
+      gap: 12px;
+    }
+    .explore-btn,
+    .ghost-btn{
+      width: 100%;
+      max-width: 260px;
+    }
+    .diagram-wrap{
+      max-width: 640px;
+      aspect-ratio: 1 / 1.08;
+      margin-top: 26px;
+    }
+    .touch-hud{
+      top: 12px;
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 4px;
+    }
+    .hint{
+      font-size: 8.5px;
+      letter-spacing: 0.1em;
+      bottom: 14px;
+    }
+    .close-btn{
+      top: 10px;
+      right: 10px;
+      font-size: 8px;
+      padding: 6px 10px;
+    }
+    .caption{
+      font-size: 9px;
+      letter-spacing: 0.08em;
+      bottom: 12px;
+    }
+    .tag{
+      font-size: 8px;
+      transform: scale(0.9);
+      transform-origin: center;
+    }
+    .tag .idx{
+      width: 12px;
+      height: 12px;
+      font-size: 7px;
+    }
+    .section-head{
+      flex-direction: column;
+      align-items: flex-start;
+      margin-bottom: 40px;
+    }
+    section{
+      padding: 90px 18px;
+    }
+    .anatomy-grid{
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+    .spec-sheet{
+      grid-template-columns: 1fr;
+      gap: 36px;
+    }
+    .spec-sheet .lead{
+      position: static;
+    }
+    .env-row{
+      grid-template-columns: 1fr;
+      gap: 10px;
+    }
+    .env-row .value{
+      text-align: left;
+    }
+  }
+
+  @media (max-width: 500px) {
+    .brand .sub{ display: none; }
+    nav ul{ justify-content: flex-start; }
+    .hero-top .col span.v{ font-size: 10px; }
+    .hero-actions{ margin-top: 22px; }
+    .diagram-wrap{ margin-top: 22px; }
+    .tag{ display: none; }
+    .anatomy-grid{ grid-template-columns: 1fr; }
+    .ghost-btn, .explore-btn{ max-width: none; }
+  }
+
+  /* ---------- SECTION SHELL ---------- */
+  section{ position:relative; padding: 120px 40px; }
+  .section-inner{ max-width:1300px; margin:0 auto; }
+  .section-head{
+    display:flex; justify-content:space-between; align-items:flex-end;
+    gap:30px; margin-bottom:60px; flex-wrap:wrap;
+    border-bottom:1px solid var(--line-strong);
+    padding-bottom:24px;
+  }
+  .section-head .num{
+    font-family:var(--mono); color:var(--text-faint); font-size:12px;
+    letter-spacing:0.1em; margin-bottom:10px; display:block;
+  }
+  .section-head h2{
+    font-family:var(--display); font-weight:700;
+    font-size:clamp(30px,4vw,46px); letter-spacing:-0.01em;
+  }
+  .section-head p{
+    max-width:380px; color:var(--text-dim); font-size:14.5px; line-height:1.6;
+  }
+
+  /* ---------- ANATOMY GRID ---------- */
+  .anatomy-grid{
+    display:grid;
+    grid-template-columns:repeat(4, 1fr);
+    gap:1px;
+    background:var(--line-strong);
+    border:1px solid var(--line-strong);
+  }
+  .part-card{
+    background:linear-gradient(180deg, rgba(16,26,43,0.9), rgba(9,18,27,0.95));
+    padding:30px 26px;
+    transition: background .3s ease, transform .3s ease, box-shadow .3s ease, border-color .3s ease;
+    position:relative;
+    border:1px solid rgba(85,216,255,0.12);
+    box-shadow: inset 0 0 26px rgba(85,216,255,0.02);
+    transform: translateY(0) rotateX(0deg);
+  }
+  .part-card:hover{ background:linear-gradient(180deg, rgba(18,33,47,0.96), rgba(11,20,29,1)); transform: translateY(-6px) rotateX(3deg); box-shadow: 0 18px 38px rgba(15, 25, 33, 0.32), inset 0 0 30px rgba(85,216,255,0.08); border-color: rgba(85,216,255,0.35); }
+  .part-card .top-row{
+    display:flex; justify-content:space-between; align-items:flex-start;
+    margin-bottom:34px;
+  }
+  .part-card .idx{
+    font-family:var(--mono); font-size:12px; color:var(--amber);
+  }
+  .part-card .glyph{
+    width:36px; height:36px;
+    border:1px solid var(--line-strong); border-radius:6px;
+    display:flex; align-items:center; justify-content:center;
+    color:var(--cyan);
+  }
+  .part-card h3{
+    font-family:var(--display); font-weight:500; font-size:19px;
+    margin-bottom:10px;
+  }
+  .part-card p{
+    color:var(--text-dim); font-size:13.5px; line-height:1.65;
+    margin-bottom:18px;
+  }
+  .part-card .spec{
+    display:flex; justify-content:space-between;
+    font-family:var(--mono); font-size:11px; color:var(--text-faint);
+    border-top:1px dashed var(--line-strong); padding-top:12px;
+  }
+  .part-card .spec b{ color:var(--cyan); font-weight:500; }
+
+  /* ---------- SPEC SHEET ---------- */
+  .spec-sheet{
+    display:grid; grid-template-columns: 0.9fr 1.1fr; gap:70px;
+    align-items:start;
+  }
+  .spec-sheet .lead{
+    position:sticky; top:120px;
+  }
+  .spec-sheet .lead .big-stat{
+    font-family:var(--display); font-weight:700;
+    font-size:clamp(56px,6vw,86px); color:var(--cyan); line-height:1;
+    margin: 18px 0 6px;
+  }
+  .spec-sheet .lead .big-stat span{ font-size:0.35em; color:var(--text-dim); font-family:var(--mono);}
+  .spec-sheet .lead p{ color:var(--text-dim); font-size:14.5px; line-height:1.7; max-width:380px; }
+
+  .spec-table{ border-top:1px solid var(--line-strong); }
+  .spec-row{
+    display:grid; grid-template-columns: 1fr auto;
+    padding:18px 4px; border-bottom:1px solid var(--line-strong);
+    font-family:var(--mono);
+  }
+  .spec-row .label{
+    color:var(--text-dim); font-size:12.5px; letter-spacing:0.06em; text-transform:uppercase;
+    display:flex; align-items:center; gap:10px;
+  }
+  .spec-row .label::before{
+    content:''; width:5px; height:5px; background:var(--cyan); border-radius:50%; flex:none;
+  }
+  .spec-row .val{ font-size:15px; color:var(--text); }
+  .spec-row .val em{ color:var(--text-faint); font-style:normal; font-size:12px; margin-left:6px; }
+
+  /* ---------- SYSTEMS / FLIGHT ENVELOPE ---------- */
+  .systems{
+    background:var(--bg-alt);
+    border-top:1px solid var(--line-strong);
+    border-bottom:1px solid var(--line-strong);
+  }
+  .env-bars{ display:flex; flex-direction:column; gap:22px; }
+  .env-row{ display:grid; grid-template-columns: 160px 1fr 90px; align-items:center; gap:18px; }
+  .env-row .name{ font-family:var(--mono); font-size:12px; color:var(--text-dim); letter-spacing:0.05em; }
+  .env-row .track{
+    height:6px; background:var(--panel); border:1px solid var(--line-strong); border-radius:4px; overflow:hidden;
+  }
+  .env-row .fill{
+    height:100%; background:linear-gradient(90deg, var(--cyan), var(--amber));
+    width:0%;
+    transition: width 1.4s cubic-bezier(.2,.8,.2,1);
+  }
+  .env-row .fill.visible{ width: var(--w); }
+  .env-row .value{ font-family:var(--mono); font-size:12px; color:var(--cyan); text-align:right; }
+
+  /* ---------- FOOTER ---------- */
+  footer{
+    padding:70px 40px 40px;
+    border-top:1px solid var(--line-strong);
+  }
+  .footer-grid{
+    max-width:1300px; margin:0 auto;
+    display:grid; grid-template-columns:1.4fr 1fr 1fr 1fr; gap:40px;
+  }
+  footer h4{
+    font-family:var(--mono); font-size:11px; color:var(--text-faint);
+    letter-spacing:0.14em; margin-bottom:16px; text-transform:uppercase;
+  }
+  footer ul{ list-style:none; display:flex; flex-direction:column; gap:10px; }
+  footer a{ color:var(--text-dim); font-size:13.5px; transition:color .2s ease; }
+  footer a:hover{ color:var(--cyan); }
+  .foot-bottom{
+    max-width:1300px; margin:60px auto 0;
+    display:flex; justify-content:space-between; align-items:center;
+    font-family:var(--mono); font-size:11px; color:var(--text-faint);
+    padding-top:24px; border-top:1px solid var(--line);
+    flex-wrap:wrap; gap:12px;
+  }
+
+  @media (max-width: 980px){
+    .anatomy-grid{ grid-template-columns:repeat(2,1fr); }
+    .spec-sheet{ grid-template-columns:1fr; }
+    .spec-sheet .lead{ position:static; }
+    footer .footer-grid{ grid-template-columns:1fr 1fr; }
+    nav{ display:none; }
+  }
+  @media (max-width: 560px){
+    .anatomy-grid{ grid-template-columns:1fr; }
+    header{ padding:18px 20px; }
+    section{ padding:80px 20px; }
+    .hero{ padding:120px 20px 40px; }
+    .footer-grid{ grid-template-columns:1fr; }
+  }
+
+  @media (prefers-reduced-motion: reduce){
+    *{ animation-duration:0.01ms !important; animation-iteration-count:1 !important; transition-duration:0.01ms !important; }
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="brand">
+    <span class="dot"></span>
+    <a href="index.html" style="display:flex; align-items:center; gap:10px;">WINGSTONE <span class="sub">/// PRALAY V1</span></a>
+  </div>
+  <nav>
+    <ul>
+      <li><a href="#anatomy">Anatomy</a></li>
+      <li><a href="#specifications">Specifications</a></li>
+      <li><a href="#systems">Systems</a></li>
+      <li><a href="index.html">Home</a></li>
+    </ul>
+  </nav>
+  <div class="status-chip"><span class="dot" style="width:6px;height:6px;"></span>SYSTEM ONLINE</div>
+</header>
+
+<section class="hero">
+  <div class="hero-frame">
+    <div class="corner tl"></div><div class="corner tr"></div>
+    <div class="corner bl"></div><div class="corner br"></div>
+  </div>
+
+  <div class="hero-top">
+    <div class="col">
+      <span class="k">CLASSIFICATION</span>
+      <span class="v">QUADROTOR — RECON / SURVEY</span>
+    </div>
+    <div class="col right">
+      <span class="k">DOCUMENT</span>
+      <span class="v">SPEC-7A / REV 03</span>
+    </div>
+  </div>
+
+  <div class="hero-main">
+    <div class="eyebrow">Upcoming Product — Pralay V1</div>
+    <h1 class="title">PRALAY V1</h1>
+    <p class="hero-sub">Eight core systems, one airframe. Scroll through the breakdown of a modern quadrotor — from brushless propulsion to the flight controller that keeps it level in a crosswind.</p>
+
+    <div class="hero-actions">
+      <a class="explore-btn" href="#anatomy"><span>Explore Pralay V1</span><em>↗</em></a>
+      <a class="ghost-btn" href="index.html"><span>Back to Wingstone</span><em>↗</em></a>
+    </div>
+
+    <div class="diagram-wrap" id="diagramWrap" aria-label="Pralay V1 chassis access panel">
+      <div class="touch-hud">
+        <span>UNIT <b>PRALAY V1</b> / CHASSIS ACCESS</span>
+        <span id="statusText">STATUS <b>SEALED</b></span>
+      </div>
+
+      <div class="radar-scene">
+        <div class="radar-core"></div>
+        <div class="radar-pulse pulse-one"></div>
+        <div class="radar-pulse pulse-two"></div>
+        <div class="radar-crosshair"></div>
+        <div class="radar-ring ring-one"></div>
+        <div class="radar-ring ring-two"></div>
+        <div class="radar-ring ring-three"></div>
+        <div class="radar-badges">
+          <span class="contact contact-a"></span>
+          <span class="contact contact-b"></span>
+          <span class="contact contact-c"></span>
+        </div>
+        <div class="radar-target" aria-label="Detected target">
+          <span class="target-blip"></span>
+          <span class="target-ring"></span>
+          <span class="target-box"></span>
+        </div>
+        <div class="radar-sweep"></div>
+        <div class="radar-label">NAV / ACTIVE</div>
+      </div>
+
+      <div class="hint"><span class="pulse-dot"></span>TAP THE CHASSIS TO OPEN</div>
+
+      <svg class="diagram-svg" viewBox="0 0 900 620" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <g stroke="#4fd8e8" stroke-width="2.5" opacity="0.85">
+          <line x1="415" y1="285" x2="245" y2="150"/>
+          <line x1="485" y1="285" x2="655" y2="150"/>
+          <line x1="415" y1="355" x2="245" y2="490"/>
+          <line x1="485" y1="355" x2="655" y2="490"/>
+        </g>
+        <g stroke="#7c8a93" stroke-width="1.2" opacity="0.5">
+          <ellipse cx="245" cy="150" rx="56" ry="8"/><ellipse cx="245" cy="150" rx="8" ry="56"/>
+          <ellipse cx="655" cy="150" rx="56" ry="8"/><ellipse cx="655" cy="150" rx="8" ry="56"/>
+          <ellipse cx="245" cy="490" rx="56" ry="8"/><ellipse cx="245" cy="490" rx="8" ry="56"/>
+          <ellipse cx="655" cy="490" rx="56" ry="8"/><ellipse cx="655" cy="490" rx="8" ry="56"/>
+        </g>
+        <g fill="none" stroke="rgba(79,216,232,.3)" stroke-width="1" stroke-dasharray="2 5">
+          <circle cx="245" cy="150" r="56"/><circle cx="655" cy="150" r="56"/>
+          <circle cx="245" cy="490" r="56"/><circle cx="655" cy="490" r="56"/>
+        </g>
+        <g>
+          <circle cx="245" cy="150" r="18" fill="#0e1317" stroke="#4fd8e8" stroke-width="2"/>
+          <circle cx="655" cy="150" r="18" fill="#0e1317" stroke="#4fd8e8" stroke-width="2"/>
+          <circle cx="245" cy="490" r="18" fill="#0e1317" stroke="#4fd8e8" stroke-width="2"/>
+          <circle cx="655" cy="490" r="18" fill="#0e1317" stroke="#4fd8e8" stroke-width="2"/>
+          <circle cx="245" cy="150" r="4.5" fill="#4fd8e8"/><circle cx="655" cy="150" r="4.5" fill="#4fd8e8"/>
+          <circle cx="245" cy="490" r="4.5" fill="#4fd8e8"/><circle cx="655" cy="490" r="4.5" fill="#4fd8e8"/>
+        </g>
+
+        <g class="reveal-layer">
+          <path class="trace" d="M404,308 C330,400 260,330 249,154" stroke="#ff5d6c" stroke-width="2.1" pathLength="100" stroke-dasharray="100" stroke-dashoffset="100"/>
+          <path class="trace" d="M404,318 C345,380 275,300 241,154" stroke="#4fd8e8" stroke-width="1.2" pathLength="100" stroke-dasharray="100" stroke-dashoffset="100"/>
+          <path class="trace" d="M496,308 C570,400 640,330 651,154" stroke="#ff5d6c" stroke-width="2.1" pathLength="100" stroke-dasharray="100" stroke-dashoffset="100"/>
+          <path class="trace" d="M496,318 C555,380 625,300 659,154" stroke="#4fd8e8" stroke-width="1.2" pathLength="100" stroke-dasharray="100" stroke-dashoffset="100"/>
+          <path class="trace" d="M404,332 C330,240 260,310 249,486" stroke="#5a6870" stroke-width="2.1" pathLength="100" stroke-dasharray="100" stroke-dashoffset="100"/>
+          <path class="trace" d="M404,342 C345,270 275,340 241,486" stroke="#4fd8e8" stroke-width="1.2" pathLength="100" stroke-dasharray="100" stroke-dashoffset="100"/>
+          <path class="trace" d="M496,332 C570,240 640,310 651,486" stroke="#5a6870" stroke-width="2.1" pathLength="100" stroke-dasharray="100" stroke-dashoffset="100"/>
+          <path class="trace" d="M496,342 C555,270 625,340 659,486" stroke="#4fd8e8" stroke-width="1.2" pathLength="100" stroke-dasharray="100" stroke-dashoffset="100"/>
+          <path class="trace" d="M450,258 C450,242 450,228 450,218" stroke="#ffcf6a" stroke-width="2" pathLength="100" stroke-dasharray="100" stroke-dashoffset="100"/>
+          <path class="trace" d="M450,388 C450,402 450,410 450,420" stroke="#ff9142" stroke-width="2.2" pathLength="100" stroke-dasharray="100" stroke-dashoffset="100"/>
+          <rect x="410" y="263" width="80" height="120" rx="6" fill="#0c1a14" stroke="#2f7a55" stroke-width="1.4"/>
+          <g fill="none" stroke="#d4af5a" stroke-width="1" opacity=".85">
+            <path d="M420,275 h26 v10 h14"/>
+            <path d="M420,292 h18 v18 h22"/>
+            <path d="M470,278 v20 h-10 v14"/>
+            <path d="M424,330 h50"/>
+            <path d="M424,344 h34 v12 h16"/>
+            <path d="M436,362 h28"/>
+          </g>
+          <rect x="424" y="278" width="18" height="18" rx="2" fill="#0e1317" stroke="#4fd8e8" stroke-width="1"/>
+          <rect x="452" y="296" width="22" height="14" rx="2" fill="#0e1317" stroke="#4fd8e8" stroke-width="1"/>
+          <rect x="424" y="316" width="14" height="14" rx="2" fill="#0e1317" stroke="#ff9142" stroke-width="1"/>
+          <circle cx="466" cy="352" r="7" fill="#0e1317" stroke="#4fd8e8" stroke-width="1"/>
+          <circle class="pin" cx="249" cy="154" r="3.5" fill="#ff5d6c" style="filter:drop-shadow(0 0 4px #ff5d6c)"/>
+          <circle class="pin" cx="651" cy="154" r="3.5" fill="#ff5d6c" style="filter:drop-shadow(0 0 4px #ff5d6c)"/>
+          <circle class="pin" cx="249" cy="486" r="3.5" fill="#8a97a0"/>
+          <circle class="pin" cx="651" cy="486" r="3.5" fill="#8a97a0"/>
+          <circle class="pin" cx="450" cy="218" r="4" fill="#ffcf6a" style="filter:drop-shadow(0 0 4px #ffcf6a)"/>
+          <circle class="pin" cx="450" cy="420" r="4" fill="#ff9142" style="filter:drop-shadow(0 0 4px #ff9142)"/>
+        </g>
+
+        <line x1="450" y1="255" x2="450" y2="215" stroke="#4fd8e8" stroke-width="2"/>
+        <circle cx="450" cy="210" r="6" fill="#0e1317" stroke="#4fd8e8" stroke-width="2"/>
+        <g stroke="#7c8a93" stroke-width="1.6">
+          <line x1="412" y1="392" x2="412" y2="430"/><line x1="488" y1="392" x2="488" y2="430"/>
+          <line x1="396" y1="430" x2="428" y2="430"/><line x1="472" y1="430" x2="504" y2="430"/>
+        </g>
+        <line x1="450" y1="392" x2="450" y2="418" stroke="#4fd8e8" stroke-width="2"/>
+        <circle cx="450" cy="432" r="16" fill="#0e1317" stroke="#4fd8e8" stroke-width="2"/>
+        <circle cx="450" cy="432" r="6" fill="none" stroke="#4fd8e8" stroke-width="1.4"/>
+        <rect x="398" y="253" width="104" height="141" rx="13" fill="#0b0f12" stroke="rgba(79,216,232,.4)" stroke-width="1.5"/>
+        <g class="shell left">
+          <path d="M398,266 a13,13 0 0 1 13,-13 h37 v141 h-37 a13,13 0 0 1 -13,-13 z" fill="#141b20" stroke="#4fd8e8" stroke-width="1.6"/>
+          <line x1="450" y1="258" x2="450" y2="389" stroke="#0a0d10" stroke-width="2"/>
+        </g>
+        <g class="shell right">
+          <path d="M502,266 a13,13 0 0 0 -13,-13 h-37 v141 h37 a13,13 0 0 0 13,-13 z" fill="#141b20" stroke="#4fd8e8" stroke-width="1.6"/>
+        </g>
+      </svg>
+
+      <div class="tag" style="left:50%; top:15%; transform:translate(-50%,-100%); animation-delay:.2s;">
+        <span class="idx">02</span><span class="label">GPS / IMU<small>Positioning &amp; orientation</small></span>
+      </div>
+      <div class="tag" style="left:11%; top:50%; transform:translate(-100%,-50%); animation-delay:.65s;">
+        <span class="idx">05</span><span class="label">ESC Array<small>4-in-1 · 45A</small></span>
+      </div>
+      <div class="tag" style="left:89%; top:50%; transform:translate(0,-50%); animation-delay:.8s;">
+        <span class="idx">01</span><span class="label">Flight Controller<small>F7 · 8kHz loop</small></span>
+      </div>
+      <div class="tag" style="left:23%; top:79%; transform:translate(-100%,-50%); animation-delay:.95s;">
+        <span class="idx">06</span><span class="label">Landing Skid<small>Impact-damped</small></span>
+      </div>
+      <div class="tag" style="left:77%; top:79%; transform:translate(0,-50%); animation-delay:1.1s;">
+        <span class="idx">07</span><span class="label">LiPo Battery<small>6S · 5200mAh</small></span>
+      </div>
+      <div class="tag" style="left:50%; top:84%; transform:translate(-50%,0); animation-delay:1.25s;">
+        <span class="idx">08</span><span class="label">Gimbal Camera<small>3-axis · 4K/60</small></span>
+      </div>
+    </div>
+
+    <div class="caption">CHASSIS ACCESS — MAIN COMPARTMENT</div>
+    <button class="close-btn" id="closeDiagramBtn">✕ CLOSE PANEL</button>
+  </div>
+
+  <div class="scroll-cue"><span>SCROLL</span><span class="line"></span></div>
+</section>
+
+<section id="anatomy">
+  <div class="section-inner">
+    <div class="section-head">
+      <div>
+        <span class="num">01 — 08 / SYSTEM INDEX</span>
+        <h2>Eight systems,<br>one airframe.</h2>
+      </div>
+      <p>Every component earns its weight. Below is the full breakdown of what keeps Pralay V1 stable, aware, and airborne.</p>
+    </div>
+
+    <div class="anatomy-grid" id="anatomyGrid"></div>
+  </div>
+</section>
+
+<section id="specifications" style="padding-top:0;">
+  <div class="section-inner">
+    <div class="section-head">
+      <div>
+        <span class="num">SPEC SHEET / REV 03</span>
+        <h2>Dimensions &amp;<br>performance.</h2>
+      </div>
+      <p>Measured at sea level, 20°C, no wind. Payload figures exclude the gimbal camera.</p>
+    </div>
+
+    <div class="spec-sheet">
+      <div class="lead">
+        <span class="mono" style="color:var(--text-faint); font-size:12px; letter-spacing:0.1em;">TOP SPEED</span>
+        <div class="big-stat">97<span>KM/H</span></div>
+        <p>A 420mm carbon-fiber diagonal frame keeps the mass low and the center of gravity centered directly beneath the rotor plane, so the airframe stays predictable even at full throttle.</p>
+      </div>
+
+      <div class="spec-table">
+        <div class="spec-row"><span class="label">Diagonal wheelbase</span><span class="val">420 <em>mm</em></span></div>
+        <div class="spec-row"><span class="label">Takeoff weight</span><span class="val">1.38 <em>kg</em></span></div>
+        <div class="spec-row"><span class="label">Max thrust (4 motors)</span><span class="val">4,760 <em>g</em></span></div>
+        <div class="spec-row"><span class="label">Flight time</span><span class="val">27 <em>min avg</em></span></div>
+        <div class="spec-row"><span class="label">Transmission range</span><span class="val">12 <em>km LOS</em></span></div>
+        <div class="spec-row"><span class="label">Max payload</span><span class="val">420 <em>g</em></span></div>
+        <div class="spec-row"><span class="label">Ingress protection</span><span class="val">IP54 <em>dust / spray</em></span></div>
+        <div class="spec-row"><span class="label">Operating temp</span><span class="val">−10 to 45 <em>°C</em></span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="systems" id="systems">
+  <div class="section-inner">
+    <div class="section-head" style="border-color:var(--line-strong);">
+      <div>
+        <span class="num">FLIGHT ENVELOPE</span>
+        <h2>How hard it's<br>allowed to work.</h2>
+      </div>
+      <p>Soft limits enforced by the flight controller — the airframe can exceed these, the firmware won't let it.</p>
+    </div>
+
+    <div class="env-bars" id="envBars">
+      <div class="env-row">
+        <span class="name">MAX TILT ANGLE</span>
+        <div class="track"><div class="fill" style="--w:68%"></div></div>
+        <span class="value">40°</span>
+      </div>
+      <div class="env-row">
+        <span class="name">MAX ASCENT RATE</span>
+        <div class="track"><div class="fill" style="--w:52%"></div></div>
+        <span class="value">6 m/s</span>
+      </div>
+      <div class="env-row">
+        <span class="name">MAX DESCENT RATE</span>
+        <div class="track"><div class="fill" style="--w:40%"></div></div>
+        <span class="value">4 m/s</span>
+      </div>
+      <div class="env-row">
+        <span class="name">WIND RESISTANCE</span>
+        <div class="track"><div class="fill" style="--w:60%"></div></div>
+        <span class="value">Lvl 5</span>
+      </div>
+      <div class="env-row">
+        <span class="name">SERVICE CEILING</span>
+        <div class="track"><div class="fill" style="--w:78%"></div></div>
+        <span class="value">4,500m</span>
+      </div>
+      <div class="env-row">
+        <span class="name">BATTERY FAILSAFE</span>
+        <div class="track"><div class="fill" style="--w:15%"></div></div>
+        <span class="value">15%</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="footer-grid">
+    <div>
+      <div class="brand" style="margin-bottom:14px;"><span class="dot"></span>PRALAY V1</div>
+      <p style="color:var(--text-dim); font-size:13.5px; line-height:1.7; max-width:280px;">A component-level look at what makes a modern quadrotor fly — built for the curious, not just the pilots.</p>
+    </div>
+    <div>
+      <h4>Document</h4>
+      <ul>
+        <li><a href="#anatomy">System index</a></li>
+        <li><a href="#specifications">Spec sheet</a></li>
+        <li><a href="#systems">Flight envelope</a></li>
+      </ul>
+    </div>
+    <div>
+      <h4>Reference</h4>
+      <ul>
+        <li><a href="#">Frame &amp; materials</a></li>
+        <li><a href="#">Power system</a></li>
+        <li><a href="#">Firmware notes</a></li>
+      </ul>
+    </div>
+    <div>
+      <h4>Status</h4>
+      <ul>
+        <li><a href="#">Rev 03 — current</a></li>
+        <li><a href="#">Rev 02 — archived</a></li>
+        <li><a href="#">Changelog</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="foot-bottom">
+    <span>SPEC-7A © PRALAY V1 — for illustration only</span>
+    <span>ALL SYSTEMS NOMINAL</span>
+  </div>
+</footer>
+
+<script>
+  const parts = [
+    { idx:'01', name:'Flight Controller', desc:'The nervous system. Reads sensor data eight thousand times a second and translates stick input into individual motor commands.', spec:'MCU', val:'STM32F7' },
+    { idx:'02', name:'GPS / IMU Module', desc:'Tells the aircraft where it is and which way is down — gyroscope, accelerometer, magnetometer and satellite positioning in one puck.', spec:'Sats', val:'GPS+GLONASS' },
+    { idx:'03', name:'Brushless Motors', desc:'Four outrunner motors, one per arm, spinning the propellers directly with no gearbox to add slop or weight.', spec:'KV', val:'1960' },
+    { idx:'04', name:'Carbon Propellers', desc:'Five blades per prop trade a little efficiency for a quieter, smoother thrust curve — useful for stable camera work.', spec:'Pitch', val:'4.3"' },
+    { idx:'05', name:'ESC Array', desc:'Converts battery DC into the three-phase AC each motor needs, switching thousands of times a second to control speed precisely.', spec:'Current', val:'45A cont.' },
+    { idx:'06', name:'Landing Skids', desc:'Damped carbon legs that absorb the shock of touchdown so the gimbal never takes the hit.', spec:'Travel', val:'12mm' },
+    { idx:'07', name:'LiPo Battery', desc:'A 6-cell lithium-polymer pack sits low in the frame, keeping the center of mass beneath the rotor plane.', spec:'Capacity', val:'5200mAh' },
+    { idx:'08', name:'Gimbal Camera', desc:'A 3-axis brushless gimbal cancels airframe vibration and tilt, keeping the horizon level no matter how the drone pitches.', spec:'Stab.', val:'3-axis' },
+  ];
+
+  const grid = document.getElementById('anatomyGrid');
+  grid.innerHTML = parts.map(p => `
+    <div class="part-card">
+      <div class="top-row">
+        <span class="idx">${p.idx}</span>
+        <div class="glyph">
+          <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><circle cx="8" cy="8" r="6.5" stroke="currentColor" stroke-width="1.3"/><circle cx="8" cy="8" r="1.6" fill="currentColor"/></svg>
+        </div>
+      </div>
+      <h3>${p.name}</h3>
+      <p>${p.desc}</p>
+      <div class="spec"><span>${p.spec}</span><b>${p.val}</b></div>
+    </div>
+  `).join('');
+
+  const heroMain = document.querySelector('.hero-main');
+  const diagramWrap = document.querySelector('.diagram-wrap');
+  const closeDiagramBtn = document.getElementById('closeDiagramBtn');
+  const statusText = document.getElementById('statusText');
+
+  function syncTouchState() {
+    if (!diagramWrap || !statusText) return;
+    const isOpen = diagramWrap.classList.contains('opened');
+    statusText.innerHTML = isOpen ? 'STATUS <b style="color:var(--amber)">OPEN</b>' : 'STATUS <b>SEALED</b>';
+  }
+
+  if (diagramWrap) {
+    diagramWrap.addEventListener('click', () => {
+      diagramWrap.classList.toggle('opened');
+      syncTouchState();
+    });
+  }
+
+  if (closeDiagramBtn) {
+    closeDiagramBtn.addEventListener('click', (event) => {
+      event.stopPropagation();
+      if (diagramWrap) {
+        diagramWrap.classList.remove('opened');
+        syncTouchState();
+      }
+    });
+  }
+
+  syncTouchState();
+
+  document.addEventListener('pointermove', (event) => {
+    const { innerWidth, innerHeight } = window;
+    const x = (event.clientX / innerWidth - 0.5) * 14;
+    const y = (event.clientY / innerHeight - 0.5) * -14;
+
+    if (heroMain) {
+      heroMain.style.transform = `rotateX(${y}deg) rotateY(${x}deg)`;
+    }
+    if (diagramWrap) {
+      diagramWrap.style.transform = `rotateX(${8 + y * 0.7}deg) rotateY(${ -8 + x * 0.8}deg) translateY(${y * 0.5}px)`;
+    }
+  });
+
+  const bars = document.querySelectorAll('.env-row .fill');
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach(e => { if(e.isIntersecting){ e.target.classList.add('visible'); } });
+  }, { threshold: 0.4 });
+  bars.forEach(b => io.observe(b));
+</script>
+
+</body>
+</html>
