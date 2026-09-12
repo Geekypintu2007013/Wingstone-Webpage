@@ -8,12 +8,11 @@ body { margin:0; color:var(--ink); background:var(--paper); font-family:var(--di
 a { color:inherit; text-decoration:none; }
 .site-shell { overflow:hidden; }
 .site-header { position:absolute; z-index:10; top:0; width:100%; padding:28px 5.5vw; display:flex; align-items:center; justify-content:space-between; color:var(--paper); }
-.brand { display:flex; align-items:center; gap:11px; font-size:14px; font-weight:700; letter-spacing:.04em; line-height:1; min-width:0; }
-.brand-logo-slot { display:inline-flex; align-items:center; justify-content:center; width:52px; height:26px; flex-shrink:0; }
-.brand > span:last-child { display:flex; flex-direction:column; justify-content:center; }
+.brand { display:flex; align-items:center; gap:12px; font-size:14px; font-weight:700; letter-spacing:.04em; line-height:1; min-width:0; }
+.brand-logo-slot { display:inline-flex; align-items:center; justify-content:center; width:60px; height:60px; flex-shrink:0; background:rgba(0,0,0,.12); border:1px solid rgba(255,255,255,.12); border-radius:12px; overflow:hidden; box-shadow:0 0 0 1px rgba(255,255,255,.02); }
+.brand-logo-slot img { display:block; width:100%; height:100%; object-fit:cover; }
+.brand-text { display:flex; flex-direction:column; justify-content:center; }
 .brand-sub { display:block; margin-top:6px; color:#91a49e; font:9px var(--mono); letter-spacing:.08em; }
-.brand-mark { display:flex; align-items:flex-end; gap:3px; height:23px; width:22px; transform:skew(-17deg); flex-shrink:0; }
-.brand-mark i { display:block; width:5px; background:var(--acid); }.brand-mark i:nth-child(1){height:13px}.brand-mark i:nth-child(2){height:19px}.brand-mark i:nth-child(3){height:23px}
 .nav-links { display:flex; align-items:center; gap:35px; font:11px var(--mono); letter-spacing:.06em; text-transform:uppercase; }.nav-links a { opacity:.78; transition:opacity .25s; }.nav-links a:hover{opacity:1}.nav-contact { border:1px solid rgba(85,216,255,.5); background:rgba(85,216,255,.08); padding:12px 15px; color:var(--acid); opacity:1!important; box-shadow:0 0 20px rgba(85,216,255,.08); }.nav-contact:hover { background:rgba(85,216,255,.12); }.nav-contact span { font-size:15px; margin-left:10px; }
 .menu-toggle { display:none; }
 .section-pad { padding:130px 9vw; }
